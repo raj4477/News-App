@@ -82,55 +82,60 @@ class _HomeState extends State<Home> {
   }
 
   Widget categoryBlock() {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 15),
-      //color: Colors.red,
-      height: h * 0.13,
-      color: Colors.grey.withOpacity(0.5),
-      //  const Color.fromRGBO(256, 250, 250, 1),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          // ElevatedButton(
-          //     onPressed: () {
-          //       setState(() {
-          //         buttonState = "none";
-          //       });
-          //     },
-          //     child: const Text("back")),
-          InkWell(
-            onTap: (){
-              setState(() {
-                buttonState = "none";
-              });
-            },
-            child: Container(
+    return SingleChildScrollView(
+      scrollDirection: Axis.horizontal,
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 5, vertical: 15),
+        //color: Colors.red,
+        height: h * 0.13,
+        color: Colors.grey.withOpacity(0.5),
+        //  const Color.fromRGBO(256, 250, 250, 1),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            // ElevatedButton(
+            //     onPressed: () {
+            //       setState(() {
+            //         buttonState = "none";
+            //       });
+            //     },
+            //     child: const Text("back")),
+            
+            Container(
               height: 60,
-              width: 90,
-              alignment: Alignment.center,
-             
-              decoration: BoxDecoration(
-                 color: Colors.grey.withOpacity(0.9),
-                 borderRadius: BorderRadius.all(Radius.circular(20))
+              width: w ,
+              // color: Colors.black,
+              child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: categoryNews.length+1,
+                  shrinkWrap: true,
+                  itemBuilder: (context, index) {
+                    return index == 0 ? InkWell(
+              onTap: (){
+                setState(() {
+                  buttonState = "none";
+                });
+              },
+              child: Container(
+                height:  60,
+                width: 120,
+                margin: const EdgeInsets.only(right: 15),
+                alignment: Alignment.center,
+               
+                decoration: BoxDecoration(
+                   color: Colors.grey.withOpacity(0.9),
+                   borderRadius: BorderRadius.all(Radius.circular(20))
+                ),
+                child: const Text("Back",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 19),),
               ),
-              child: const Text("Back",style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold,fontSize: 19),),
+            ):CategoryCard(
+                      imgUrl: categoryNews[index-1].imgUrl,
+                      name: categoryNews[index-1].categoryName,
+                    ) ;
+                  }),
             ),
-          ),
-          Container(
-            height: h * 0.13,
-            width: w * 0.78,
-            child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: categoryNews.length,
-                shrinkWrap: true,
-                itemBuilder: (context, index) {
-                  return CategoryCard(
-                    imgUrl: categoryNews[index].imgUrl,
-                    name: categoryNews[index].categoryName,
-                  );
-                }),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

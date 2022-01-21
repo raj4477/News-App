@@ -16,6 +16,6 @@ List <Category> categoryNews = [
   Category(categoryName: 'Science', imgUrl: 'assets/images/science.jpg'),
   Category(categoryName: 'Technology', imgUrl: 'assets/images/technology.jpg'),
   Category(categoryName: 'Sports', imgUrl: 'assets/images/sports.jpg'),
-  Category(categoryName: 'Bussiness', imgUrl: 'assets/images/bussines.jpg'),
+  Category(categoryName: 'Business', imgUrl: 'assets/images/bussines.jpg'),
   Category(categoryName: 'Entertainment', imgUrl: 'assets/images/entertainment.jpg')
 ];
